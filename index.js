@@ -1,7 +1,6 @@
 'use strict';
 const READ         = 1,
       CHECK_ARR    = 2,
-      ANCHOR       = 3,
       NORMAL_END   = 4,
       PUSH_ANY     = 5,
       PUSH_ARR     = 6,

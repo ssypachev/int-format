@@ -1,3 +1,5 @@
+[![Codecov Coverage](https://img.shields.io/codecov/c/github/ssypachev/secval/master.svg?style=flat-square)](https://codecov.io/gh/ssypachev/int-format/)
+
 # int-format
 
 Helper library for formatting integer numbers
