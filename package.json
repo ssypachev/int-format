@@ -3,17 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "repository": "https://github.com/ssypachev/int-format/",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha tests",
     "cover": "nyc mocha tests"
   },
-  "keywords": [],
+  "keywords": ["format", "integer", "number"],
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^6.0.2",
     "nyc": "^13.3.0"

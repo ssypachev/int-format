@@ -31,16 +31,25 @@ IntFormat(format)
 ```
 
 # Options
+
 `format` - the format
+
 `padWith` - which symbol to use to pad empty placeholders, default empty string
+
 `sigil` - symbol to substitute, default `#`
+
 `anchor` - symbol to escape sigil, default is backslash
 
 # Methods
+
 `setFormat`
+
 `setSigil`
+
 `setAnchor`
+
 `setPad`
+
 `format` - takes string or number as argument
 
 # Examples
