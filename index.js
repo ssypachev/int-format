@@ -85,7 +85,7 @@ class IntFormat {
                             state = CHECK_ARR;
                         break;
                         case this.anc:
-                            state = ANCHOR;
+                            state = READ_AFTER_ANCHOR;
                         break;
                         case EMPTY_STRING:
                             state = NORMAL_END;
@@ -114,9 +114,6 @@ class IntFormat {
                     out.push(this.pad);
                     state = READ;
                 break;
-                case ANCHOR:
-                    state = READ_AFTER_ANCHOR;
-                    break;
                 case READ_AFTER_ANCHOR:
                     c = read();
                     charCounter++;
