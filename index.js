@@ -72,13 +72,11 @@ class IntFormat {
             notFinished = true,
             c = null,
             out = [],
-            argCounter = 0,
-            charCounter = 0;
+            argCounter = 0;
         do {
             switch (state) {
                 case READ:
                     c = read();
-                    charCounter++;
                     switch (c) {
                         case this.sig:
                             state = CHECK_ARR;
@@ -115,7 +113,6 @@ class IntFormat {
                 break;
                 case READ_AFTER_ANCHOR:
                     c = read();
-                    charCounter++;
                     switch (c) {
                         case this.sig:
                             state = PUSH_HASH;
