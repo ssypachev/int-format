@@ -1,5 +1,5 @@
 {
-  "name": "phone-format",
+  "name": "int-format",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,7 +11,11 @@
     "test": "mocha tests",
     "cover": "nyc mocha tests"
   },
-  "keywords": ["format", "integer", "number"],
+  "keywords": [
+    "format",
+    "integer",
+    "number"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
