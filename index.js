@@ -1,26 +1,32 @@
 'use strict';
 const READ         = 1,
       CHECK_ARR    = 2,
-      NORMAL_END   = 4,
-      PUSH_ANY     = 5,
-      PUSH_ARR     = 6,
-      PUSH_PAD     = 7,
-      READ_AFTER_ANCHOR = 8,
-      PUSH_HASH    = 9,
-      NEXT_ANCHOR  = 10,
-      ABNORMAL_END = 11;
+      NORMAL_END   = 3,
+      PUSH_ANY     = 4,
+      PUSH_ARR     = 5,
+      PUSH_PAD     = 6,
+      READ_AFTER_ANCHOR = 7,
+      PUSH_HASH    = 8,
+      NEXT_ANCHOR  = 9,
+      ABNORMAL_END = 10;
 
 const EMPTY_STRING = "";
 const DIGIT_REGEXP = /[\d]/g;
 
 class IntFormat {
 
-    setData (num) {
-        if (typeof num === 'string') {
+    setData (num = "") {
+		if (num === null) {
+			num = "";
+		}
+		if (typeof num === 'string') {
             this.data = num.match(DIGIT_REGEXP);
-        } else {
+		} else {
             this.data = num.toString().match(DIGIT_REGEXP);
         }
+		if (this.data === null) {
+			this.data = [];
+		}
         this.len = this.data.length;
     }
 
@@ -32,13 +38,6 @@ class IntFormat {
             this.f = arguments[0];
         } else {
             this.f = format;
-        }
-    }
-
-    static getReader (string) {
-        let str = string, i = 0;
-        return () => {
-            return str.charAt(i++);
         }
     }
 
@@ -61,13 +60,20 @@ class IntFormat {
         this.anc = anchor;
         return this;
     }
+	
+	static getFormatReader (string) {
+        let str = string, i = 0;
+        return () => {
+            return str.charAt(i++);
+        }
+    }
 
     format (num) {
         if (!this.f) {
             throw new TypeError(`format undefined`);
         }
         this.setData(num);
-        const read = IntFormat.getReader(this.f);
+        const read = IntFormat.getFormatReader(this.f);
         let state = READ,
             notFinished = true,
             c = null,

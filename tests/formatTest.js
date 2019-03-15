@@ -91,6 +91,18 @@ describe('Should test number format', () => {
 		let str = new IntFormat({ format: "!######!!" }).setAnchor('!').format("12345");
 		chai.expect(str).to.equal("#12345!");
 	});
+	it ("Should test empty input", () => {
+		let str = new IntFormat({ format: "######" }).format();
+		chai.expect(str).to.equal("");
+	});
+	it ("Should test undefined eplicit input", () => {
+		let str = new IntFormat({ format: "######" }).format(undefined);
+		chai.expect(str).to.equal("");
+	});
+	it ("Should test null input", () => {
+		let str = new IntFormat({ format: "######" }).format(null);
+		chai.expect(str).to.equal("");
+	});
 });
 
 
