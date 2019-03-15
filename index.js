@@ -16,17 +16,17 @@ const DIGIT_REGEXP = /[\d]/g;
 class IntFormat {
 
     setData (num = "") {
-		if (num === null) {
-			num = "";
-		}
-		if (typeof num === 'string') {
+        if (num === null) {
+            num = "";
+        }
+        if (typeof num === 'string') {
             this.data = num.match(DIGIT_REGEXP);
-		} else {
+        } else {
             this.data = num.toString().match(DIGIT_REGEXP);
         }
-		if (this.data === null) {
-			this.data = [];
-		}
+        if (this.data === null) {
+            this.data = [];
+        }
         this.len = this.data.length;
     }
 
@@ -60,8 +60,8 @@ class IntFormat {
         this.anc = anchor;
         return this;
     }
-	
-	static getFormatReader (string) {
+
+    static getFormatReader (string) {
         let str = string, i = 0;
         return () => {
             return str.charAt(i++);
