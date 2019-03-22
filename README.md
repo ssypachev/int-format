@@ -1,4 +1,4 @@
-[![Codecov Coverage](https://img.shields.io/codecov/c/github/ssypachev/secval/master.svg?style=flat-square)](https://codecov.io/gh/ssypachev/int-format/)
+[![Codecov Coverage](https://img.shields.io/codecov/c/github/ssypachev/int-format/master.svg?style=flat-square)](https://codecov.io/gh/ssypachev/int-format/)
 
 # int-format
 
@@ -56,6 +56,8 @@ IntFormat(format)
 ```js
 let str = new IntFormat({ padWith: '?', format: "\\## \\\\# #" }).format(12);
 //#1 \\2 ?
+let str = new IntFormat('+# (###) ###-##-##').format('78037764302');
+//+7 (803) 776-43-02
 ```
 
 

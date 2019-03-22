@@ -52,11 +52,17 @@ class IntFormat {
     }
 
     setSigil (sigil) {
+		if (typeof(sigil) !== 'string' && sigil.length != 1) {
+			throw new TypeError('IntFormat.setSigil error: bad argument. Argument must be a string, length 1');
+		}
         this.sig = sigil;
         return this;
     }
 
     setAnchor (anchor) {
+		if (typeof(anchor) !== 'string' && anchor.length != 1) {
+			throw new TypeError('IntFormat.setAnchor error: bad argument. Argument must be a string, length 1');
+		}
         this.anc = anchor;
         return this;
     }
