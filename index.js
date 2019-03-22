@@ -9,20 +9,20 @@ const READ         = 1,
       PUSH_HASH    = 8,
       NEXT_ANCHOR  = 9,
       ABNORMAL_END = 10;
-	  
+
 const isNotString = (arg) => {
-	return typeof(arg) !== 'string';
+    return typeof(arg) !== 'string';
 };
 
 const isNotStringLengthOne = (arg) => {
-	return isNotString(arg) && arg.length !== 1;
+    return isNotString(arg) && arg.length !== 1;
 };
 
 const getFormatReader = (string) => {
-	let str = string, i = 0;
-	return () => {
-		return str.charAt(i++);
-	}
+    let str = string, i = 0;
+    return () => {
+        return str.charAt(i++);
+    }
 }
 
 const EMPTY_STRING = "";
@@ -34,7 +34,7 @@ class IntFormat {
         if (num === null) {
             num = "";
         }
-		let tmp;
+        let tmp;
         if (typeof num === 'string') {
             tmp = num.match(DIGIT_REGEXP);
         } else {
@@ -43,8 +43,8 @@ class IntFormat {
         if (tmp === null) {
             this.data = [];
         } else {
-			this.data = tmp;
-		}
+            this.data = tmp;
+        }
         this.len = this.data.length;
     }
 
@@ -60,9 +60,9 @@ class IntFormat {
     }
 
     setFormat (format) {
-		if (isNotString(format)) {
-			throw new TypeError('IntFormat.setFormat error: bad argument. Argument must be a string');
-		}
+        if (isNotString(format)) {
+            throw new TypeError('IntFormat.setFormat error: bad argument. Argument must be a string');
+        }
         this.f = format;
         return this;
     }
@@ -73,17 +73,17 @@ class IntFormat {
     }
 
     setSigil (sigil) {
-		if (isNotStringLengthOne(sigil)) {
-			throw new TypeError('IntFormat.setSigil error: bad argument. Argument must be a string, length 1');
-		}
+        if (isNotStringLengthOne(sigil)) {
+            throw new TypeError('IntFormat.setSigil error: bad argument. Argument must be a string, length 1');
+        }
         this.sig = sigil;
         return this;
     }
 
     setAnchor (anchor) {
-		if (isNotStringLengthOne(anchor)) {
-			throw new TypeError('IntFormat.setAnchor error: bad argument. Argument must be a string, length 1');
-		}
+        if (isNotStringLengthOne(anchor)) {
+            throw new TypeError('IntFormat.setAnchor error: bad argument. Argument must be a string, length 1');
+        }
         this.anc = anchor;
         return this;
     }
