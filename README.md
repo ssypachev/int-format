@@ -60,6 +60,14 @@ let str = new IntFormat('+# (###) ###-##-##').format('78037764302');
 //+7 (803) 776-43-02
 ```
 
+# Testing
+
+`npm run test`
+`npm run cover`
+
+# Architecture
+
+`IntFormat` is a simple state machine
 
 
 
