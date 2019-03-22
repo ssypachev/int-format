@@ -9,6 +9,21 @@ const READ         = 1,
       PUSH_HASH    = 8,
       NEXT_ANCHOR  = 9,
       ABNORMAL_END = 10;
+	  
+const isNotString = (arg) => {
+	return typeof(arg) !== 'string';
+};
+
+const isNotStringLengthOne = (arg) => {
+	return isNotString(arg) && arg.length !== 1;
+};
+
+const getFormatReader = (string) => {
+	let str = string, i = 0;
+	return () => {
+		return str.charAt(i++);
+	}
+}
 
 const EMPTY_STRING = "";
 const DIGIT_REGEXP = /[\d]/g;
@@ -19,14 +34,17 @@ class IntFormat {
         if (num === null) {
             num = "";
         }
+		let tmp;
         if (typeof num === 'string') {
-            this.data = num.match(DIGIT_REGEXP);
+            tmp = num.match(DIGIT_REGEXP);
         } else {
-            this.data = num.toString().match(DIGIT_REGEXP);
+            tmp = num.toString().match(DIGIT_REGEXP);
         }
-        if (this.data === null) {
+        if (tmp === null) {
             this.data = [];
-        }
+        } else {
+			this.data = tmp;
+		}
         this.len = this.data.length;
     }
 
@@ -42,6 +60,9 @@ class IntFormat {
     }
 
     setFormat (format) {
+		if (isNotString(format)) {
+			throw new TypeError('IntFormat.setFormat error: bad argument. Argument must be a string');
+		}
         this.f = format;
         return this;
     }
@@ -52,7 +73,7 @@ class IntFormat {
     }
 
     setSigil (sigil) {
-		if (typeof(sigil) !== 'string' && sigil.length != 1) {
+		if (isNotStringLengthOne(sigil)) {
 			throw new TypeError('IntFormat.setSigil error: bad argument. Argument must be a string, length 1');
 		}
         this.sig = sigil;
@@ -60,18 +81,11 @@ class IntFormat {
     }
 
     setAnchor (anchor) {
-		if (typeof(anchor) !== 'string' && anchor.length != 1) {
+		if (isNotStringLengthOne(anchor)) {
 			throw new TypeError('IntFormat.setAnchor error: bad argument. Argument must be a string, length 1');
 		}
         this.anc = anchor;
         return this;
-    }
-
-    static getFormatReader (string) {
-        let str = string, i = 0;
-        return () => {
-            return str.charAt(i++);
-        }
     }
 
     format (num) {
@@ -79,10 +93,10 @@ class IntFormat {
             throw new TypeError(`format undefined`);
         }
         this.setData(num);
-        const read = IntFormat.getFormatReader(this.f);
+        const read = getFormatReader(this.f);
         let state = READ,
             notFinished = true,
-            c = null,
+            c,
             out = [],
             argCounter = 0;
         do {
