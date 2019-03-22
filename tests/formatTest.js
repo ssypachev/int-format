@@ -62,6 +62,24 @@ describe('Should test number format', () => {
 		let str = new IntFormat({ format: "" }).setFormat("######-#####").format("12345");
 		chai.expect(str).to.equal("12345-");
 	});
+	it ("Should test setFormat bad arg", () => {
+		let wasErr = false;
+		try {
+			let str = new IntFormat({ format: "" }).setFormat(1).format("12345");
+		} catch (err) {
+			wasErr = true;
+		}
+		chai.expect(wasErr).to.be.true;
+	});
+	it ("Should test setFormat undefined arg", () => {
+		let wasErr = false;
+		try {
+			let str = new IntFormat({ format: "" }).setFormat().format("12345");
+		} catch (err) {
+			wasErr = true;
+		}
+		chai.expect(wasErr).to.be.true;
+	});
 	it ("Should test setFormat", () => {
 		let str = new IntFormat().setFormat("######-#####").format("12345");
 		chai.expect(str).to.equal("12345-");
