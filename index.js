@@ -177,24 +177,3 @@ class IntFormat {
 }
 
 module.exports.IntFormat = IntFormat;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
